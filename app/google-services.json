@@ -1,0 +1,114 @@
+{
+  "project_info": {
+    "project_number": "73065075764",
+    "firebase_url": "https://gabrielmarcodispmoveis.firebaseio.com",
+    "project_id": "gabrielmarcodispmoveis",
+    "storage_bucket": "gabrielmarcodispmoveis.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:73065075764:android:70cbe02f0963389f",
+        "android_client_info": {
+          "package_name": "com.example.a1422130071.appthor"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "73065075764-4vtru0f27csm0akb11eabst5isg935qh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAbbuWmHFc3G9JzKBrlzrDwUgvP-whgM-g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "73065075764-4vtru0f27csm0akb11eabst5isg935qh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:73065075764:android:d6fd75ba599635e07ce661",
+        "android_client_info": {
+          "package_name": "com.example.principalflee"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "73065075764-92k75ud6b4hu6rt292fgvtnh9a7mouak.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.principalflee",
+            "certificate_hash": "c4ee298394eb2ba52325a980d6d83ecbbc534f7e"
+          }
+        },
+        {
+          "client_id": "73065075764-4vtru0f27csm0akb11eabst5isg935qh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAbbuWmHFc3G9JzKBrlzrDwUgvP-whgM-g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "73065075764-4vtru0f27csm0akb11eabst5isg935qh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:73065075764:android:301ce7d9d7e04140",
+        "android_client_info": {
+          "package_name": "com.mqtt.tcc.hrmes"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "73065075764-7i7ihacgsjo044a1rb4c420pg88a2fhi.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mqtt.tcc.hrmes",
+            "certificate_hash": "6b447554f18f80f7f04927e8abb0e2682faf7985"
+          }
+        },
+        {
+          "client_id": "73065075764-4vtru0f27csm0akb11eabst5isg935qh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAbbuWmHFc3G9JzKBrlzrDwUgvP-whgM-g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "73065075764-4vtru0f27csm0akb11eabst5isg935qh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

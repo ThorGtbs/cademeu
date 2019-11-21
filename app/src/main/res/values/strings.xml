@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">Principal flee</string>
+    <string name="email_login">E-mail </string>
+    <string name="senha_login">Senha/Password </string>
+    <string name="botao_login">Entrar </string>
+    <string name="botao_cadastro">Cadastro? </string>
+    <string name="botao_esqueceu">Esqueceu a senha?</string>
+    <string name="action_butons">acaoBotao</string>
+    <string name="botao_cadstrar">Cadastrar</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="estrela_mapa">Estrela</string>
+    <string name="title_activity_maps2">Mapa</string>
+    <string name="title_activity_maps3">Map</string>
+    <string name="botao_marcador_marker_maps">Marcador</string>
+    <string name="botao_desmarcador_marker_maps">Desmarcar</string>
+    <string name="enviar_e_mail">Enviar E-mail</string>
+
+
+    // recupera senha
+    <string name="string_implict_intent">Abra o seu E-mail con:</string>
+
+
+</resources>
