@@ -18,6 +18,7 @@
 
     // recupera senha
     <string name="string_implict_intent">Abra o seu E-mail con:</string>
+    <string name="btn_manda_email">Enviar E-mail</string>
 
 
 </resources>

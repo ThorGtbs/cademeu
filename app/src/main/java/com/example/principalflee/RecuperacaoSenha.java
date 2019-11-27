@@ -13,7 +13,9 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -26,21 +28,32 @@ import com.jaeger.library.StatusBarUtil;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Delayed;
 
 public class RecuperacaoSenha extends AppCompatActivity {
 
     FirebaseAuth auth;
     EditText email;
     View contextView;
+    Button button;
+    boolean verifica;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recuperacao_senha);
-        email = findViewById(R.id.txtEmail);
+        email = findViewById(R.id.edtEmail);
         contextView = findViewById(R.id.view);
-        //verificaEmail();
-        redefinirSenhar();
+        button = findViewById(R.id.button);
+
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                redefinirSenhar();
+            }
+        });
+
     }
 
 
@@ -48,28 +61,32 @@ public class RecuperacaoSenha extends AppCompatActivity {
     public void  redefinirSenhar(){
         auth = FirebaseAuth.getInstance();
         auth.setLanguageCode("pt");
+        String recebeEmail = email.getText().toString();
 
+        if(recebeEmail.isEmpty()){
+            Toast.makeText(this,"Digite o email:",Toast.LENGTH_LONG).show();
+        }else {
 
-        auth.sendPasswordResetEmail("gabrieltorquato@hotmail.com")
-                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if (task.isComplete()) {
-                            Log.d("email", "Email sent.");
-                            Snackbar.make(contextView, "Um link foi" +
-                                    " enviado para o E-mail digitado", Snackbar.LENGTH_INDEFINITE).setAction("Entendi!", new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    // abrir caixa de dialogo com os apps
-                                    Log.i("create", "entrou");
-                                    implicitIntent();
+            auth.sendPasswordResetEmail(recebeEmail)
+                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (task.isComplete()) {
+                                Log.d("email", "Email sent.");
+                                Snackbar.make(contextView, "Um link foi" +
+                                        " enviado para o E-mail digitado", Snackbar.LENGTH_LONG).setAction("Entendi!", new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        // abrir caixa de dialogo com os apps
+                                        Log.i("create", "entrou");
+                                        implicitIntent();
 
-                                }
-                            }).show();
+                                    }
+                                }).show();
+                            }
                         }
-
-                    }
-                });
+                    });
+        }
     }
 
     public void implicitIntent(){
@@ -81,16 +98,13 @@ public class RecuperacaoSenha extends AppCompatActivity {
         //intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.makeMainSelectorActivity(Intent.ACTION_VIEW, Intent.CATEGORY_APP_EMAIL);
         intent.setType("message/rfc822");
-
         PackageManager packageManager = getPackageManager();
         List<ResolveInfo> activities = packageManager.queryIntentActivities(intent,packageManager.MATCH_DEFAULT_ONLY);
-
         String title = getResources().getString(R.string.string_implict_intent);
         Intent chooserPainel = Intent.createChooser(intent,title);
         if(activities.size() > 0 ){
             Log.i("create", "entrou 2");
             startActivity(chooserPainel);
-
        }*/
         Intent emailIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("mailto:"));
         PackageManager pm = getPackageManager();
@@ -120,7 +134,5 @@ public class RecuperacaoSenha extends AppCompatActivity {
             startActivity(openInChooser);
         }
     }
-
-
 
 }
