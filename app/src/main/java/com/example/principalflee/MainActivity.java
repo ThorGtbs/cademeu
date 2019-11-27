@@ -82,24 +82,22 @@ public class MainActivity extends AppCompatActivity{
     @Override
     protected void onStart() {
         super.onStart();
-        /*
+
         firebaseUser = firebaseAuth.getCurrentUser();
-        if (firebaseUser!= null){
-            startActivity(new Intent( this, MapsActivity.class));
+        if (firebaseUser!= null) {
+            //startActivity(new Intent(this, MapsActivity.class));
+            updateUI(firebaseUser);
         }
-       //updateUI(firebaseUser);
-          */
     }
 
     private void updateUI(FirebaseUser firebaseUser) {
         this.firebaseUser = firebaseUser;
         if (firebaseUser.getUid() ==  firebaseAuth.getUid()){
-           Intent itProfile = new Intent(this, Profile.class);
+           Intent itProfile = new Intent(this, MapsActivity.class);
            startActivity(itProfile);
        }
     }
-
-
+  
     public void iniciaCadastro(){
         Intent intent = new Intent(this,CadastroUser.class);
         startActivity(intent);
@@ -153,8 +151,6 @@ public class MainActivity extends AppCompatActivity{
                     entrar.setEnabled(false);
                 }
             }
-
-
         }
 
         @Override
@@ -162,6 +158,12 @@ public class MainActivity extends AppCompatActivity{
 
         }
     };
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        firebaseAuth.signOut();
+    }
 
 
 }
