@@ -13,6 +13,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -20,15 +21,10 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
-import com.google.firebase.auth.ActionCodeSettings;
-import com.google.firebase.auth.EmailAuthCredential;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.jaeger.library.StatusBarUtil;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.Delayed;
 
 public class RecuperacaoSenha extends AppCompatActivity {
 
@@ -56,12 +52,22 @@ public class RecuperacaoSenha extends AppCompatActivity {
 
     }
 
+    public void hideKeyBoard(){
+        View view = getCurrentFocus();
+        if (view!= null) {
+            InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(this.INPUT_METHOD_SERVICE);
+            inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
+    }
+
 
 
     public void  redefinirSenhar(){
+        hideKeyBoard();
         auth = FirebaseAuth.getInstance();
         auth.setLanguageCode("pt");
         String recebeEmail = email.getText().toString();
+
 
         if(recebeEmail.isEmpty()){
             Toast.makeText(this,"Digite o email:",Toast.LENGTH_LONG).show();
@@ -74,7 +80,7 @@ public class RecuperacaoSenha extends AppCompatActivity {
                             if (task.isComplete()) {
                                 Log.d("email", "Email sent.");
                                 Snackbar.make(contextView, "Um link foi" +
-                                        " enviado para o E-mail digitado", Snackbar.LENGTH_LONG).setAction("Entendi!", new View.OnClickListener() {
+                                        " enviado para o E-mail digitado", Snackbar.LENGTH_INDEFINITE).setAction("Entendi!", new View.OnClickListener() {
                                     @Override
                                     public void onClick(View v) {
                                         // abrir caixa de dialogo com os apps
