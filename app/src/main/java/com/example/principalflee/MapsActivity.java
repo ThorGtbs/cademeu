@@ -147,8 +147,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             mMap.setMapStyle(mapStyleOptions);
             fireBaseRecupera = new FireBaseRecupera(mMap);
             uiSettings = mMap.getUiSettings();
-
-
         } catch (Exception e) {
             e.printStackTrace();
         }

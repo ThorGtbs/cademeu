@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.pm.LabeledIntent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import android.graphics.drawable.ShapeDrawable;
 import android.location.Location;
 import android.net.Uri;
 import android.os.Bundle;

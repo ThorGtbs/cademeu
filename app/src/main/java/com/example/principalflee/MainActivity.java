@@ -83,11 +83,11 @@ public class MainActivity extends AppCompatActivity{
     protected void onStart() {
         super.onStart();
 
-        firebaseUser = firebaseAuth.getCurrentUser();
-        if (firebaseUser!= null) {
+       // firebaseUser = firebaseAuth.getCurrentUser();
+       // if (firebaseUser!= null) {
             //startActivity(new Intent(this, MapsActivity.class));
-            updateUI(firebaseUser);
-        }
+         //   updateUI(firebaseUser);
+       // }
     }
 
     private void updateUI(FirebaseUser firebaseUser) {
