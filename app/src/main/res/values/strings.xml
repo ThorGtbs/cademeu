@@ -7,10 +7,9 @@
     <string name="botao_esqueceu">Esqueceu a senha?</string>
     <string name="action_butons">acaoBotao</string>
     <string name="botao_cadstrar">Cadastrar</string>
-    <string name="title_activity_maps">Map</string>
+    <string name="title_activity_maps"></string>
     <string name="estrela_mapa">Estrela</string>
     <string name="title_activity_maps2">Mapa</string>
-    <string name="title_activity_maps3">Map</string>
     <string name="botao_marcador_marker_maps">Marcador</string>
     <string name="botao_desmarcador_marker_maps">Desmarcar</string>
     <string name="enviar_e_mail">Enviar E-mail</string>
@@ -19,6 +18,15 @@
     // recupera senha
     <string name="string_implict_intent">Abra o seu E-mail con:</string>
     <string name="btn_manda_email">Enviar E-mail</string>
+
+    // menu navigation
+    <string name="teste_menu">Teste 1</string>
+    <string name="teste_2">Teste 2</string>
+    <string name="teste_3">Teste 3</string>
+
+
+    <string name="navigation_drawer_open">Abrir</string>
+    <string name="navigation_drawer_close">Fechar</string>
 
 
 </resources>

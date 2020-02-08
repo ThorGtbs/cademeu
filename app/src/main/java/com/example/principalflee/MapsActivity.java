@@ -1,10 +1,17 @@
 package com.example.principalflee;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentActivity;
+import androidx.navigation.ui.AppBarConfiguration;
 
 import android.Manifest;
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
@@ -14,6 +21,7 @@ import android.location.Location;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -31,6 +39,8 @@ import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -52,7 +62,7 @@ import Classes.PutMarkers;
 import static android.view.View.VISIBLE;
 import static com.jaeger.library.StatusBarUtil.setTransparent;
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
+public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback {
 
     //GoogleMap.OnCameraIdleListener,
     private Location localizacaoCorrente;
@@ -81,32 +91,51 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     MarkerSets markerSets = new MarkerSets();
     PutMarkers putMarkers;
 
+    private DrawerLayout drawerLayout;
+    private AppBarConfiguration mAppBarConfiguration;
+
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps2);
 
+        // toolbar
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar.setPadding(0,20,0,0);
+        toolbar.setScrollBarSize(12);
+        setSupportActionBar(toolbar);
+
+        drawerLayout = findViewById(R.id.drawer);
+        ActionBarDrawerToggle toggle;
+        toggle = new ActionBarDrawerToggle(this,drawerLayout, toolbar,R.string.navigation_drawer_open,R.string.navigation_drawer_close);
+
+        toggle.getDrawerArrowDrawable().setColor(Color.BLACK);
+
+        drawerLayout.addDrawerListener(toggle);
+
+        toggle.syncState();
+
         Log.i("Marker","Create");
 
         functionalInterface = LocationServices.getFusedLocationProviderClient(this);
         recuperaLocalizacaoAtual();
-        markerImage = findViewById(R.id.imageView3);
+        markerImage = findViewById(R.id.marcador);
         btMarcador = findViewById(R.id.btMarcar);
         btDesmarcador = findViewById(R.id.btDesmarca);
 
-        if (Build.VERSION.SDK_INT >= 19 && Build.VERSION.SDK_INT < 21) {
-            setWindowFlag(this, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, true);
-        }
-        if (Build.VERSION.SDK_INT >= 19) {
-            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
-        }
-        //make fully Android Transparent Status bar
-        if (Build.VERSION.SDK_INT >= 21) {
-            setWindowFlag(this, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, false);
+        setWindowFlag(this, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, true);
+        Log.d("aaa","aaa");
+
+
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
+
+
+        setWindowFlag(this, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, false);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             getWindow().setStatusBarColor(Color.TRANSPARENT);
-
-
         }
+
 
     }
 
@@ -309,6 +338,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         win.setAttributes(winParams);
     }
 
+    @Override
+    public void onBackPressed() {
 
-
+        if(drawerLayout.isDrawerOpen(GravityCompat.START)){
+            drawerLayout.closeDrawer(GravityCompat.START);
+        }
+        super.onBackPressed();
+    }
 }
