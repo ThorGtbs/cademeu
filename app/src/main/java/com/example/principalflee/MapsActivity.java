@@ -39,8 +39,6 @@ import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -50,7 +48,6 @@ import com.google.firebase.database.ValueEventListener;
 import com.jaeger.library.StatusBarUtil;
 
 import java.io.IOException;
-import java.net.CookieHandler;
 import java.util.List;
 import java.util.Locale;
 
@@ -60,7 +57,6 @@ import Classes.MarkerSets;
 import Classes.PutMarkers;
 
 import static android.view.View.VISIBLE;
-import static com.jaeger.library.StatusBarUtil.setTransparent;
 
 public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback {
 
@@ -88,10 +84,14 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     // classes criadas por  mim.
     FireBaseRecupera fireBaseRecupera;
     FireBaseInsert fireBaseInsert= new FireBaseInsert();
+
     MarkerSets markerSets = new MarkerSets();
     PutMarkers putMarkers;
+    Toolbar toolbar;
+    ActionBarDrawerToggle toggle;
 
-    private DrawerLayout drawerLayout;
+
+    DrawerLayout drawerLayout;
     private AppBarConfiguration mAppBarConfiguration;
 
 
@@ -99,43 +99,32 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps2);
 
-        // toolbar
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        toolbar.setPadding(0,20,0,0);
-        toolbar.setScrollBarSize(12);
-        setSupportActionBar(toolbar);
-
-        drawerLayout = findViewById(R.id.drawer);
-        ActionBarDrawerToggle toggle;
-        toggle = new ActionBarDrawerToggle(this,drawerLayout, toolbar,R.string.navigation_drawer_open,R.string.navigation_drawer_close);
-
-        toggle.getDrawerArrowDrawable().setColor(Color.BLACK);
-
-        drawerLayout.addDrawerListener(toggle);
-
-        toggle.syncState();
-
-        Log.i("Marker","Create");
-
-        functionalInterface = LocationServices.getFusedLocationProviderClient(this);
-        recuperaLocalizacaoAtual();
         markerImage = findViewById(R.id.marcador);
         btMarcador = findViewById(R.id.btMarcar);
         btDesmarcador = findViewById(R.id.btDesmarca);
-
-        setWindowFlag(this, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, true);
-        Log.d("aaa","aaa");
+        drawerLayout = findViewById(R.id.drawerMain);
 
 
-        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
+        toolbar = findViewById(R.id.tBar);
+        setSupportActionBar(toolbar);
+
+        toggle = new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.navigation_drawer_open,R.string.navigation_drawer_close);
+        toggle.getDrawerArrowDrawable().setColor(Color.BLACK);
+        drawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_);
 
 
-        setWindowFlag(this, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, false);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            getWindow().setStatusBarColor(Color.TRANSPARENT);
-        }
+        //status
+        StatusBarUtil.setTransparentForDrawerLayout(this, drawerLayout);
+        StatusBarUtil.setLightMode(this);
 
+
+        functionalInterface = LocationServices.getFusedLocationProviderClient(this);
+        recuperaLocalizacaoAtual();
 
     }
 
@@ -338,12 +327,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         win.setAttributes(winParams);
     }
 
-    @Override
-    public void onBackPressed() {
 
-        if(drawerLayout.isDrawerOpen(GravityCompat.START)){
-            drawerLayout.closeDrawer(GravityCompat.START);
-        }
-        super.onBackPressed();
-    }
+
 }

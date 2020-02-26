@@ -35,9 +35,8 @@
 
         <activity
             android:name=".MapsActivity"
-            android:label="@string/title_activity_maps"
-            android:theme="@style/AppTheme.NoActionBar"
-            />
+            android:label=""
+            android:theme="@style/AppTheme.NoActionBar"/>
 
         <activity android:name=".PrincipalPageMaps" />
         <activity android:name=".UserProfile" />
